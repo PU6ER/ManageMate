@@ -1,0 +1,19 @@
+.container{
+    padding: 0 10px;
+}
+.group{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.modal {
+    background-color: #0a7efb00;
+    color: red;
+}
+.overlay{
+    background-color: #0000;
+}
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 2000ms ease-in-out;
+}
