@@ -1,22 +1,10 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "name": "Create a project",
-      "description": "Create a project using React, Redux, RTK Query",
-      "status": "To Do"
-    },
-    {
       "name": "Solve Tests",
       "description": "Need to solve exam test ",
       "status": "To Do",
       "id": 3
-    },
-    {
-      "name": "sefssfe",
-      "description": "sefsef",
-      "status": "Done",
-      "id": 4
     },
     {
       "name": "faef",
@@ -31,16 +19,40 @@
       "id": 6
     },
     {
-      "name": "fsfsfs",
-      "description": "sefs",
-      "status": "To Do",
-      "id": 7
+      "name": "eff",
+      "description": "sefsfD",
+      "status": "Done",
+      "id": 9
     },
     {
-      "name": "dfsf",
-      "description": "sfsfs",
+      "name": "eafaefa",
+      "description": "aef",
+      "status": "In Progress",
+      "id": 11
+    },
+    {
+      "name": "aefeaefa",
+      "description": "aefefa",
       "status": "To Do",
-      "id": 8
+      "id": 12
+    },
+    {
+      "name": "effsfs",
+      "description": "esfse",
+      "status": "In Progress",
+      "id": 13
+    },
+    {
+      "name": "esaf",
+      "description": "aef",
+      "status": "Need Review",
+      "id": 14
+    },
+    {
+      "name": "sfesf",
+      "description": "sefsef",
+      "status": "To Do",
+      "id": 15
     }
   ]
 }
