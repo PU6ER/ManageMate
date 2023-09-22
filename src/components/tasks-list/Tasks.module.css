@@ -7,13 +7,8 @@
     gap: 30px;
 }
 .modal {
-    background-color: #0a7efb00;
+    background-color: #1468c100;
     color: red;
-}
-.overlay{
-    background-color: #0000;
-}
-.ReactModal__Overlay {
-    opacity: 0;
-    transition: opacity 2000ms ease-in-out;
+    display: flex;
+    justify-content: center;
 }
