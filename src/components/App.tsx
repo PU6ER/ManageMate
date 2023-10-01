@@ -1,7 +1,9 @@
 import { useState } from "react";
 import CreateTask from "./create-task/CreateTask";
 import TasksList from "./tasks-list/Tasks";
-
+import ProjectPage from "../pages/ProjectPage";
+import Sidebar from "./sidebar/Sidebar";
+import styles from "./App.module.css"
 // const userId= 1
 
 function App() {
@@ -16,9 +18,10 @@ function App() {
     setQueryTerm(searchTerm);
   };
   return (
-    <div>
+    <div className={styles.container}>
       {/* <CreateTask /> */}
-      <TasksList />
+      <Sidebar />
+      <ProjectPage />
     </div>
   );
 }
