@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useCreateTaskMutation } from "../../store/api/task.api";
 import { ITaskData } from "../../types/task.types";
-
+import { AiOutlineClose } from "react-icons/ai";
+import styles from "./CreateTask.module.css";
 const defaultValue: ITaskData = {
   name: "",
   description: "",
@@ -19,7 +20,7 @@ export default function CreateTask({ handleModal, sectionStatus }: TaskProps) {
   const [createTask] = useCreateTaskMutation();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     createTask(task).then(() => {
       setTask(defaultValue);
     });
@@ -27,12 +28,15 @@ export default function CreateTask({ handleModal, sectionStatus }: TaskProps) {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.container}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <p>Add new task: </p>
-          <button style={{ marginBottom: "7px" }} onClick={handleModal}>
-            Close
+          <span style={{fontWeight:"bold"}}>Add new task: </span>
+          <button style={{ backgroundColor: "#ffff" }} onClick={handleModal}>
+            <AiOutlineClose />
           </button>
+          {/* <button style={{ marginBottom: "7px" }} onClick={handleModal}>
+            Close
+          </button> */}
         </div>
         <label>
           <input
@@ -58,7 +62,13 @@ export default function CreateTask({ handleModal, sectionStatus }: TaskProps) {
             onChange={(e) => setTask({ ...task, status: e.target.value })}
           />
         </label> */}
-        <button type="submit" onClick={() => setTask({ ...task, status: sectionStatus })}>Create</button>
+        <button
+          type="submit"
+          onClick={() => setTask({ ...task, status: sectionStatus })}
+          className={styles.createBtn}
+        >
+          Create
+        </button>
       </form>
     </div>
   );
