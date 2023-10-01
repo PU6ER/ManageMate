@@ -1,4 +1,4 @@
-import { ITaskData } from "./../../types/task.types";
+import { ITask, ITaskData } from "./../../types/task.types";
 import { api } from "./api";
 
 export const taskApi = api.injectEndpoints({
@@ -26,7 +26,15 @@ export const taskApi = api.injectEndpoints({
         },
       ],
     }),
+    getTasksByStatus: builder.query<ITask[], string>({
+      query: (status) => `/status=${status}`,
+      providesTags: () => [
+        {
+          type: "Task",
+        },
+      ],
+    }),
   }),
 });
 
-export const { useCreateTaskMutation, useDeleteTaskMutation } = taskApi;
+export const { useCreateTaskMutation, useDeleteTaskMutation, useGetTasksByStatusQuery } = taskApi;
