@@ -1,11 +1,57 @@
 .container{
-    width: 150px;
-    border-radius: 10px;
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
     padding: 4px 5px;
-    background-color: #2783c1;
+    background-color: #ffff;
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    position: relative;
 
+}
 
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.contextBtn {
+    background-color: #ffff;
+    
+}
+
+.context {
+    width: 200px;
+    height: 150px;
+    position: absolute;
+    background-color: #ffff;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+}
+.btn{
+    font-family: 'Satoshi', sans-serif;
+    display: flex;
+    width: 50px;
+    font-weight: 500;
+    background-color: #ffff;
+    justify-self: center;
+}
+.contextClose{
+    display: flex;
+    align-self: flex-end;
+    background-color: #ffff;
+}
+.textDescr{
+    line-height: 20px;
+    line-clamp: 1;
+    overflow: hidden;
+    display: box;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
 }

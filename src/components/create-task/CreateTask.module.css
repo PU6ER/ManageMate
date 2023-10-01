@@ -1,0 +1,24 @@
+
+.createBtn {
+    background-color: #fff;
+    color: #365eff;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.createForm{
+    /* width: 150px; */
+    
+}
+.container{
+    width: 200px;
+    height: 150px;
+    border-radius: 5px;
+    padding: 4px 5px;
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    position: relative;
+
+}

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useCreateTaskMutation } from "../../store/api/task.api";
 import { ITaskData } from "../../types/task.types";
-
+import { AiOutlineClose } from "react-icons/ai";
+import styles from "./CreateTask.module.css";
 const defaultValue: ITaskData = {
   name: "",
   description: "",
@@ -10,23 +11,33 @@ const defaultValue: ITaskData = {
 
 interface TaskProps {
   handleModal: () => void;
+  sectionStatus: string;
 }
 
-export default function CreateTask({ handleModal }: TaskProps) {
+export default function CreateTask({ handleModal, sectionStatus }: TaskProps) {
   const [task, setTask] = useState<ITaskData>(defaultValue);
 
   const [createTask] = useCreateTaskMutation();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     createTask(task).then(() => {
       setTask(defaultValue);
     });
+    setTimeout(() => handleModal(), 1000);
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <p>Add new task: </p>
-        <button onClick={handleModal}>Close</button>
+      <form onSubmit={handleSubmit} className={styles.container}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span style={{fontWeight:"bold"}}>Add new task: </span>
+          <button style={{ backgroundColor: "#ffff" }} onClick={handleModal}>
+            <AiOutlineClose />
+          </button>
+          {/* <button style={{ marginBottom: "7px" }} onClick={handleModal}>
+            Close
+          </button> */}
+        </div>
         <label>
           <input
             type="text"
@@ -43,15 +54,21 @@ export default function CreateTask({ handleModal }: TaskProps) {
             onChange={(e) => setTask({ ...task, description: e.target.value })}
           />
         </label>
-        <label>
+        {/* <label>
           <input
             type="text"
             placeholder="Status"
             value={task.status}
             onChange={(e) => setTask({ ...task, status: e.target.value })}
           />
-        </label>
-        <button type="submit">Create</button>
+        </label> */}
+        <button
+          type="submit"
+          onClick={() => setTask({ ...task, status: sectionStatus })}
+          className={styles.createBtn}
+        >
+          Create
+        </button>
       </form>
     </div>
   );

@@ -11,10 +11,12 @@ export const api = createApi({
   }),
   endpoints: (builder) => ({
     getTasks: builder.query<ITask[], null>({
-      query: () => `/`,
-      providesTags:(result, error) => [{
-        type: "Task",
-      }],
+      query: () => `/?_sort=id&_order=desc`,
+      providesTags: (result, error) => [
+        {
+          type: "Task",
+        },
+      ],
     }),
   }),
 });
