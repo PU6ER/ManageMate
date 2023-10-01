@@ -12,3 +12,29 @@
     display: flex;
     justify-content: center;
 }
+.delete {
+    font-family: 'Satoshi', sans-serif;
+    margin-bottom: 10px;
+    width: 210px;
+    background-color: #fff;
+    color: #365eff;
+    font-weight: bold;
+}
+.color{
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.taskCount{
+    font-size: 12px;
+    background-color: #fff;
+    width: 30px;
+    font-weight: bold;
+    height: 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
