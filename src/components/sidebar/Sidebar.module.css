@@ -1,6 +1,6 @@
 .sidebar{
     display: flex;
-    width: 300px;
+    width: 250px;
     flex-direction: row;
     gap: 50px;
 }
