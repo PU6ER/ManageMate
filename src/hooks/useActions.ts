@@ -1,12 +1,10 @@
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { actions } from "../store/favourites/favourites.slice";
-import { userSlice } from "../store/user/user.slice";
-import * as userActions from "../store/user/user.actions";
+import { actions } from "../store/projects/projects.slice";
 const rootActions = {
   ...actions,
-  ...userActions,
+  
 };
 
 export const useActions = () => {
@@ -14,4 +12,3 @@ export const useActions = () => {
 
   return useMemo(() => bindActionCreators(rootActions, dispatch), [dispatch]);
 };
-

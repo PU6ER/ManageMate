@@ -16,7 +16,7 @@ interface ITaskItem {
 
 const TaskGroup = ({ status, context, setContext, selectedTask, setSelectedTask }: ITaskItem) => {
   const [deleteTask] = useDeleteTaskMutation();
-  const { isLoading, data } = useGetTasksQuery(null);
+  const { isLoading, data,  } = useGetTasksQuery(null);
 
   const handleContextOpen = (taskId: number) => {
     // if(context && selectedTask !== taskId) setContext(true)
