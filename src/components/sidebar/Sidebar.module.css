@@ -1,8 +1,15 @@
 .sidebar{
     display: flex;
-    width: 250px;
+    width: 300px;
     flex-direction: row;
-    gap: 50px;
+    border-top: 1px solid #c5c4c460;
+    height: 100vh;
+}
+.sidebarDisabled{
+    display: flex;
+    width: 300px;
+    flex-direction: row;
+    height: 100vh;
 }
 .sidebar span{
     display: flex;
@@ -10,8 +17,50 @@
     background-color: #fff;
 }
 .left{
+    background-color: #fff;
     display: flex;
     width: 75px;
     flex-direction: column;
     gap: 50px;
+    align-items: center;
+
+    
+}
+.left img{
+    margin-top: 10px;
+    width: 50px;
+}
+.icon{
+    cursor: pointer;
+    position: relative;
+}
+.iconActive{
+    cursor: pointer;
+    position: relative;
+}
+.iconActive::after{
+    content: "";
+    width: 2px;
+    height: 110%;
+    border-left: 4px solid #365eff;
+    position: absolute;
+    top: -2px;
+    left: -25px
+}
+.tabActive::after{
+    width: 100%;
+    height: 2px;
+    color:#fff;
+    content: "";
+    top: 41px;
+    left: 0px;
+    position: absolute;
+    border-bottom: 2px solid #365eff;
+}
+
+.tabActive{
+    background: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    position: relative;
 }
