@@ -1,0 +1,30 @@
+.subTasks{
+    background-color: #fff;
+    border: 1px solid #c5c4c460;
+    color:#929191;
+    margin-top: 10px;
+    width: fit-content;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+}
+.subTasks:hover{
+    color:#5c5c5c;
+    border: 1px solid #92929260;
+    transition: .2s ease-in;
+
+}
+.subTasksDone{
+    background-color: #ecfaf7;
+    border: 1px solid #34c59f;
+    color:#34c59f;
+    margin-top: 10px;
+    width: fit-content;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+}
