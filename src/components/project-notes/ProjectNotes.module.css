@@ -1,5 +1,18 @@
 .container{
-    width: 1250px;
+    width: 1235px;
+    height: 600px;
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    overflow-y: scroll;
+}
+.create{
+    font-family: 'Satoshi', sans-serif;
+    margin-bottom: 10px;
+    width: 285px;
+    height: 40px;
+    background-color: #365eff;
+    color: #fff;
+    font-weight: bold;
+    border: 1px solid #c5c4c460
 }
