@@ -1,12 +1,12 @@
-import { ITask, ITaskData } from "./../../types/task.types";
+import { ISubtask, ITask, ITaskData } from "./../../types/task.types";
 import { api } from "./api";
 
 export const taskApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    createTask: builder.mutation<null, ITaskData>({
-      query: (task) => ({
+    createTask: builder.mutation<null, [ITaskData, number]>({
+      query: ([task, id]) => ({
         body: task,
-        url: "/",
+        url: `/projects/${id}/tasks/`,
         method: "POST",
       }),
       invalidatesTags: () => [
@@ -17,7 +17,7 @@ export const taskApi = api.injectEndpoints({
     }),
     deleteTask: builder.mutation<null, number>({
       query: (id) => ({
-        url: `/${id}`,
+        url: `/tasks/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: () => [
@@ -37,4 +37,8 @@ export const taskApi = api.injectEndpoints({
   }),
 });
 
-export const { useCreateTaskMutation, useDeleteTaskMutation, useGetTasksByStatusQuery } = taskApi;
+export const {
+  useCreateTaskMutation,
+  useDeleteTaskMutation,
+  useGetTasksByStatusQuery,
+} = taskApi;
