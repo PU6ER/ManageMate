@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import CreateTask from "../create-task/CreateTask";
 import { useGetTasksByStatusQuery } from "../../store/api/task.api";
 import { useGetTasksQuery } from "../../store/api/api";
+import { useProjects } from "../../hooks/useProjects";
+import Loader from "../loader/Loader";
 
 const TaskSections = [
   { name: "To Do", color: "#ff8179" },
@@ -18,8 +20,9 @@ const TasksList = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedSection, setSelectedSection] = useState("");
   const [context, setContext] = useState(false);
+  const { projects } = useProjects();
   const [selectedTask, setSelectedTask] = useState(0);
-  const { isLoading, data } = useGetTasksQuery(null);
+  const { isLoading, data, isFetching } = useGetTasksQuery(projects[0]);
   const handleModalOpen = (selectedSection: string) => {
     setSelectedSection(selectedSection);
     setModalIsOpen((prevState) => !prevState);
@@ -30,55 +33,65 @@ const TasksList = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.group}>
-        {TaskSections.map((section) => (
-          <div>
-            <div
-              style={{
-                marginBottom: "15px",
-                display: "flex",
-                alignItems: "center",
-                justifyItems: "center",
-              }}
-            >
+      {isFetching ? (
+        <div className={styles.loader}>
+        <Loader style={{ width: "500px" }} />
+        </div>
+      ) : isLoading ? (
+        <div className={styles.loader}>
+        <Loader style={{ width: "500px" }} />
+        </div>
+      ) : (
+        <div className={styles.group}>
+          {TaskSections.map((section) => (
+            <div>
               <div
-                className={styles.color}
-                style={{ backgroundColor: `${section.color}` }}
-              ></div>
-              <span
                 style={{
-                  fontWeight: "bold",
+                  marginBottom: "15px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyItems: "center",
                 }}
               >
-                {section.name}
-              </span>
-              <div className={styles.taskCount}>
-                {data?.filter((task) => task.status === section.name).length}
+                <div
+                  className={styles.color}
+                  style={{ backgroundColor: `${section.color}` }}
+                ></div>
+                <span
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                >
+                  {section.name}
+                </span>
+                <div className={styles.taskCount}>
+                  {data?.filter((task) => task.status === section.name).length}
+                </div>
               </div>
-            </div>
-            <button
-              type="button"
-              onClick={() => handleModalOpen(section.name)}
-              className={styles.delete}
-            >
-              + Add new Task
-            </button>
-            {modalIsOpen && section.name == selectedSection && (
-              <CreateTask
-                handleModal={handleModalClose}
-                sectionStatus={selectedSection}
+              <button
+                type="button"
+                onClick={() => handleModalOpen(section.name)}
+                className={styles.delete}
+              >
+                + Add New Task
+              </button>
+              {modalIsOpen && section.name == selectedSection && (
+                <CreateTask
+                  handleModal={handleModalClose}
+                  sectionStatus={selectedSection}
+                />
+              )}
+              <TaskGroup
+                status={section.name}
+                context={context}
+                setContext={setContext}
+                selectedTask={selectedTask}
+                setSelectedTask={setSelectedTask}
               />
-            )}
-            <TaskGroup
-              status={section.name}
-              context={context}
-              setContext={setContext}
-              selectedTask={selectedTask}
-              setSelectedTask={setSelectedTask}
-            />
-          </div>
-        ))}
-      </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
