@@ -11,7 +11,10 @@ export const taskSlice = createSlice({
       state[0] = id;
     },
     setTaskToZero: (state) => {
-      state.pop();
+      state.shift();
+    },
+    setTaskToUpdate: (state, { payload: id }: PayloadAction<number>) => {
+      state[1] = id;
     },
   },
 });
