@@ -3,25 +3,46 @@ import { useCreateTaskMutation } from "../../store/api/task.api";
 import { ITaskData } from "../../types/task.types";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "./CreateTask.module.css";
+import { useProjects } from "../../hooks/useProjects";
+import Select from "react-select";
 const defaultValue: ITaskData = {
   name: "",
   description: "",
   status: "",
+  group: "",
 };
 
 interface TaskProps {
   handleModal: () => void;
   sectionStatus: string;
 }
+const options = [
+  {
+    value: "dev",
+    label: "Development",
+  },
+  {
+    value: "ux",
+    label: "UX stages",
+  },
+  {
+    value: "design",
+    label: "Design",
+  },
+  {
+    value: "brand",
+    label: "Branding",
+  },
+];
 
 export default function CreateTask({ handleModal, sectionStatus }: TaskProps) {
   const [task, setTask] = useState<ITaskData>(defaultValue);
-
+  const { projects } = useProjects();
   const [createTask] = useCreateTaskMutation();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    createTask(task).then(() => {
+    createTask([task, projects[0]]).then(() => {
       setTask(defaultValue);
     });
     setTimeout(() => handleModal(), 1000);
@@ -30,7 +51,7 @@ export default function CreateTask({ handleModal, sectionStatus }: TaskProps) {
     <div>
       <form onSubmit={handleSubmit} className={styles.container}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span style={{fontWeight:"bold"}}>Add new task: </span>
+          <span style={{ fontWeight: "bold" }}>Add new task: </span>
           <button style={{ backgroundColor: "#ffff" }} onClick={handleModal}>
             <AiOutlineClose />
           </button>
@@ -54,6 +75,10 @@ export default function CreateTask({ handleModal, sectionStatus }: TaskProps) {
             onChange={(e) => setTask({ ...task, description: e.target.value })}
           />
         </label>
+        <Select
+          options={options}
+          onChange={(e) => e && setTask({ ...task, group: e?.label})}
+        />
         {/* <label>
           <input
             type="text"

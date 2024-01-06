@@ -51,8 +51,8 @@ input{
   transition: border-color 0.4s ease-in-out;
 }
 
-input:focus {
+/* input:focus {
   border-color: #365eff;
-}
+} */
 
 

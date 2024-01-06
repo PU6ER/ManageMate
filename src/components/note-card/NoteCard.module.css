@@ -1,0 +1,25 @@
+.container{
+    width: 250px;
+    height: 200px;
+    background-color: #fefac9;
+    border-radius: 5px;
+    margin-left: 20px;
+    padding: 4px 5px;
+    border: 1px solid #c5c4c460
+
+}
+
+hr {
+    color:#c5c4c460;
+}
+h2{
+    padding: 4px 5px;
+}
+.textDescr{
+    line-height: 20px;
+    line-clamp: 1;
+    overflow: hidden;
+    display: box;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}

@@ -1,0 +1,22 @@
+
+.createBtn {
+    background-color: #fff;
+    color: #365eff;
+    font-weight: bold;
+    margin-top: 50px;
+}
+
+
+.container{
+    width: 275px;
+    height: 210px;
+    border-radius: 5px;
+    padding: 4px 5px;
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    position: relative;
+    border: 1px solid #c5c4c460
+
+}

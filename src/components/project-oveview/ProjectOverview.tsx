@@ -1,10 +1,15 @@
+import { FC } from "react";
 import styles from "./ProjectOverview.module.css";
 
-const ProjectOverview = () => {
+interface Overview {
+  data: string;
+}
+
+const ProjectOverview = ({ data } : {data: string}) => {
   return (
     <div className={styles.container}>
-      <span>Project Overview</span>
-      <span>Blah blah...</span>
+      <span>{data}</span>
+      
     </div>
   );
 };
