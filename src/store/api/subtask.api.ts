@@ -33,7 +33,7 @@ export const subtaskApi = api.injectEndpoints({
     updateSubtask: builder.mutation<null, [ISubtaskData, number, number]>({
       query: ([subtask, subtaskId, taskId]) => ({
         body: { ...subtask, taskId: `${taskId}` },
-        url: `/subtasks/${subtaskId}`,
+        url: `/tasks/${taskId}/subtasks/${subtaskId}`,
         method: "PATCH",
       }),
       invalidatesTags: (subtaskId) => [

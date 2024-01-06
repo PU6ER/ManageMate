@@ -6,7 +6,7 @@ export const taskApi = api.injectEndpoints({
     createTask: builder.mutation<null, [ITaskData, number]>({
       query: ([task, id]) => ({
         body: task,
-        url: `/projects/${id}/tasks/`,
+        url: `/projects/${id}/tasks`,
         method: "POST",
       }),
       invalidatesTags: () => [
@@ -34,6 +34,13 @@ export const taskApi = api.injectEndpoints({
         },
       ],
     }),
+    updateTaskStatus: builder.mutation<null, [string, number]>({
+      query: ([status, id]) => ({
+        url: `/tasks/${id}/${status}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: () => [{ type: "Task" }],
+    }),
   }),
 });
 
@@ -41,4 +48,5 @@ export const {
   useCreateTaskMutation,
   useDeleteTaskMutation,
   useGetTasksByStatusQuery,
+  useUpdateTaskStatusMutation,
 } = taskApi;
