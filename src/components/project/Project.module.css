@@ -87,7 +87,8 @@
 .container{
     display: flex;
     flex-direction: column;
-    width:  1235px;
+    width:  1215px;
+    
 }
 .tab{
     background: #fff;

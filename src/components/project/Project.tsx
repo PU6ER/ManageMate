@@ -13,23 +13,45 @@ import { LuSearch } from "react-icons/lu";
 import EmojiPicker, { Emoji } from "emoji-picker-react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useTask } from "../../hooks/useTask";
+import { useTab } from "../../hooks/useTab";
 import Subtasks from "../subtasks/Subtasks";
+import { useGetUserByIdQuery } from "../../store/api/user.api";
+import { useUser } from "../../hooks/useUser";
+import { motion } from "framer-motion";
+import { useActions } from "../../hooks/useActions";
+import { Link } from "react-router-dom";
 
 const Tabs = ["Overview", "Tasks", "Notes", "Questions"];
 
 const Project = () => {
-  const [tab, setTab] = useState("Overview");
+  // const [tab, setTab] = useState("Overview");
+  const { tab } = useTab();
+  const { setTab, setSidebarSection } = useActions();
   const { projects } = useProjects();
+  const { user } = useUser();
   const { task } = useTask();
   const { data, isLoading } = useGetProjectByIdQuery(projects[0]);
+  const {
+    data: userData,
+    isLoading: isUserLoading,
+    isSuccess,
+  } = useGetUserByIdQuery(user[0]);
   const [emoji, setEmoji] = useState("");
   const [isEmojiOpen, setIsEmojiOpen] = useState(false);
   const handleTab = (tabName: string) => {
     setTab(tabName);
   };
+  isSuccess && console.log("userData", userData.name);
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <motion.div
+        // initial={{ x: -75 }}
+        // animate={{ x: 0 }}
+        initial={{ opacity: 0.7, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className={styles.header}
+      >
         <div className={styles.headerPermach}>
           <div className={styles.search}>
             <LuSearch />
@@ -43,23 +65,26 @@ const Project = () => {
           <div className={styles.profile}>
             <LuSettings />
             <LuBell />
-            {/* {isEmojiOpen && (
-              <div className={styles.emojiPicker}>
-                <EmojiPicker
-                  width={500}
-                  height={800}
-                  onEmojiClick={(emoji) => {
-                    setEmoji(emoji.unified);
-                    setIsEmojiOpen(false);
-                    console.log(emoji);
-                  }}
-                />
+            <Link to="/user">
+              <div
+                className={styles.profileSection}
+                onClick={() => setSidebarSection("")}
+              >
+                <div onClick={() => setIsEmojiOpen((prevState) => !prevState)}>
+                  <img
+                    className={styles.profilePhoto}
+                    src={userData && userData.imageUrl}
+                    alt=""
+                  />
+                </div>
+                {isUserLoading ? (
+                  <Loader style={{ width: "100px" }} />
+                ) : userData ? (
+                  <span>{userData.name}</span>
+                ) : null}
+                {/* {userData && userData.name} */}
               </div>
-            )} */}
-            <div className={styles.profileSection}>
-              <div className={styles.profilePhoto}></div>
-              <span>Billy Herrington</span>
-            </div>
+            </Link>
             {/* <img src="#" alt="Prof" onClick={() => setIsEmojiOpen(true)} /> */}
           </div>
         </div>
@@ -69,7 +94,7 @@ const Project = () => {
           <div className={styles.headerTop}>
             <div className={styles.headerLeft}>
               <div className={styles.emojiBg}>
-                <Emoji unified={data.image} />
+                <Emoji unified="1f5a5-fe0f" />
               </div>
               <div className={styles.headerText}>
                 <span>{data.name}</span>
@@ -96,6 +121,19 @@ const Project = () => {
                     animateOnRender
                   />
                   <span className={styles.progressBarTitle}>20% complete</span>
+                  {/* {isEmojiOpen && (
+                    <div className={styles.emojiPicker}>
+                      <EmojiPicker
+                        width={500}
+                        height={800}
+                        onEmojiClick={(emoji) => {
+                          setEmoji(emoji.unified);
+                          setIsEmojiOpen(false);
+                          console.log(emoji);
+                        }}
+                      />
+                    </div>
+                  )} */}
                 </div>
               </div>
             </div>
@@ -113,23 +151,23 @@ const Project = () => {
           {Tabs.map((tabName) => (
             <button
               onClick={() => handleTab(tabName)}
-              className={tabName === tab ? styles.tabActive : styles.tab}
+              className={tabName === tab[0] ? styles.tabActive : styles.tab}
             >
               {tabName}
             </button>
           ))}
         </div>
-      </div>
+      </motion.div>
       {data ? (
-        tab === "Overview" ? (
+        tab[0] === "Overview" ? (
           <ProjectOverview data={data.overview} />
-        ) : tab === "Tasks" && task.length > 0 ? (
+        ) : tab[0] === "Subtasks" ? (
           <Subtasks />
-        ) : tab === "Tasks" && task.length == 0 ? (
+        ) : tab[0] === "Tasks" ? (
           <TasksList />
-        ) : tab === "Notes" ? (
+        ) : tab[0] === "Notes" ? (
           <ProjectNotes />
-        ) : tab === "Questions" ? (
+        ) : tab[0] === "Questions" ? (
           <ProjectQuestions />
         ) : null
       ) : null}
