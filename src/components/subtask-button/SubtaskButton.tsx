@@ -33,10 +33,12 @@ const SubtaskButton = ({ taskId }: { taskId: number }) => {
       ) : (
         <button
           className={
-            subtasksDone === subtasks ? styles.subTasksDone : styles.subTasks
+            subtasksDone === subtasks && subtasksDone !== 0
+              ? styles.subTasksDone
+              : styles.subTasks
           }
           onClick={() => setTask(taskId)}
-         
+
           // onMouseEnter={() => alert("aboba")}
         >
           <LuListChecks size="1.5em" />
