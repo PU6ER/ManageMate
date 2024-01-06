@@ -1,7 +1,9 @@
 .container{
     overflow-y: scroll;
     height: 600px;
-    width: 1235px;    
+    
+    /* width: 1235px;     */
+    width: 1210px;
 }
 .group{
     display: flex;
@@ -17,7 +19,7 @@
 .delete {
     font-family: 'Satoshi', sans-serif;
     margin-bottom: 10px;
-    width: 285px;
+    width: 275px;
     height: 40px;
     background-color: #fff;
     color: #365eff;
