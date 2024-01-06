@@ -10,6 +10,9 @@ export const projectsSlice = createSlice({
     setProjectId: (state, { payload: id }: PayloadAction<number>) => {
       state[0] = id;
     },
+    setProjectToZero: (state) => {
+      state.pop();
+    },
   },
 });
 export const { actions, reducer } = projectsSlice;
