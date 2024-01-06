@@ -1,9 +1,10 @@
 .sidebar{
     display: flex;
-    width: 300px;
+    width: auto;
     flex-direction: row;
     border-top: 1px solid #c5c4c460;
-    height: 100vh;
+    height:auto;
+    min-height: 100vh;
 }
 .sidebarDisabled{
     display: flex;
@@ -33,6 +34,7 @@
 .icon{
     cursor: pointer;
     position: relative;
+    text-decoration: none;
 }
 .iconActive{
     cursor: pointer;

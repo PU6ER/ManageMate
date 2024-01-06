@@ -9,18 +9,31 @@ import {
 } from "react-icons/lu";
 import { IconContext } from "react-icons/lib";
 import Logo from "../../managematelogo.png";
+import { motion } from "framer-motion";
+
 import { useSidebar } from "../../hooks/useSidebar";
 import { useActions } from "../../hooks/useActions";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { sidebar } = useSidebar();
-  const { setSidebarSection, setProjectId, setStateToInitial } = useActions();
+  const {
+    setSidebarSection,
+    setProjectId,
+    setStateToInitial,
+    setProjectToZero,
+  } = useActions();
   return (
-    <div
+    <motion.div
+      initial={{ x: -300 }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.5 }}
       className={sidebar.length === 0 ? styles.sidebarDisabled : styles.sidebar}
     >
       <div className={styles.left}>
-        <img src={Logo} alt="" onClick={() => setSidebarSection("abo")} />
+        <Link to={"/"}>
+          <img src={Logo} alt="" onClick={() => setSidebarSection("")} />
+        </Link>
         <div className={styles.icon}>
           <LuLayoutGrid size="1.5em" />
         </div>
@@ -32,20 +45,30 @@ const Sidebar = () => {
           <IconContext.Provider
             value={sidebar[0] === "projects" ? { color: "#365eff" } : {}}
           >
-            <LuPanelLeft
-              size="1.5em"
-              onClick={() => setSidebarSection("projects")}
-            />
+            <Link to={"/projects"}>
+              <LuPanelLeft
+                size="1.5em"
+                onClick={() => setSidebarSection("projects")}
+              />
+            </Link>
           </IconContext.Provider>
         </div>
         <div
           className={sidebar[0] === "timer" ? styles.iconActive : styles.icon}
         >
-          <IconContext.Provider
-            value={sidebar[0] === "timer" ? { color: "#365eff" } : {}}
-          >
-            <LuTimer size="1.5em" onClick={() => setSidebarSection("timer")} />
-          </IconContext.Provider>
+          <Link to={"/timer"}>
+            <IconContext.Provider
+              value={sidebar[0] === "timer" ? { color: "#365eff" } : {}}
+            >
+              <LuTimer
+                size="1.5em"
+                onClick={() => {
+                  setSidebarSection("timer");
+                  setProjectToZero();
+                }}
+              />
+            </IconContext.Provider>
+          </Link>
         </div>
         <div className={styles.icon}>
           <LuCalendarDays size="1.5em" className={styles.icon} />
@@ -54,11 +77,12 @@ const Sidebar = () => {
           <LuBarChart3 size="1.5em" className={styles.icon} />
         </div>
       </div>
-
-      <div className={styles.right}>
-        <SidebarSection />
-      </div>
-    </div>
+      {sidebar.length > 0 && (
+        <motion.div className={styles.right}>
+          <SidebarSection />
+        </motion.div>
+      )}
+    </motion.div>
   );
 };
 
