@@ -1,5 +1,5 @@
 .container{
-    width: 284px;
+    width: 275px;
     height: 240px;
     border-radius: 5px;
     /* padding: 4px 5px; */
@@ -11,6 +11,10 @@
     border: 1px solid #c5c4c460;
     
 
+}
+.drag{
+    min-height: 50px   ;
+    /* height: max-content; */
 }
 
 .header{
