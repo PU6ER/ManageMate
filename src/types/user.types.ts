@@ -1,10 +1,8 @@
 export interface IUser {
   id: number;
   name: string;
+  email: string;
+  password: string;
+  imageUrl: string;
 }
-
-export interface IInitialUserState {
-  user: IUser;
-  isLoading: boolean;
-  error: null | string;
-}
+export interface IUserData extends Omit<IUser, "id"> {}
