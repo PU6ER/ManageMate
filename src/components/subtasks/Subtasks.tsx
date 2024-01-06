@@ -16,6 +16,7 @@ import {
   LuChevronUp,
 } from "react-icons/lu";
 import { ISubtask, ISubtaskData } from "../../types/task.types";
+import { motion } from "framer-motion";
 
 const defaultValue: ISubtaskData = {
   name: "",
@@ -26,6 +27,7 @@ const defaultValue: ISubtaskData = {
 const Subtasks = () => {
   const { task } = useTask();
   const { setTask, setTaskToZero } = useActions();
+  const { setTab } = useActions();
   const { projects } = useProjects();
   const [subtask, setSubtask] = useState<ISubtaskData>(defaultValue);
   const [subtaskId, setSubtaskId] = useState(0);
@@ -70,17 +72,28 @@ const Subtasks = () => {
     ]);
   };
   return (
-    <div className={styles.container}>
-      <button onClick={() => setTaskToZero()} className={styles.back}>
-        Back
-      </button>
-      <button
-        type="button"
-        onClick={() => handleModalOpen()}
-        className={styles.add}
-      >
-        + Add New Subtask
-      </button>
+    <div className={styles.container} >
+      <motion.div animate={{ y: [0, -5, 0] }} transition={{ delay: 1 }}>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setTab("Tasks")}
+          className={styles.back}
+        >
+          Back
+        </motion.button>
+      </motion.div>
+      <motion.div animate={{ y: [0, -5, 0] }} transition={{ delay: 1 }}>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          type="button"
+          onClick={() => handleModalOpen()}
+          className={styles.add}
+        >
+          + Add New Subtask
+        </motion.button>
+      </motion.div>
       {modalIsOpen && <CreateSubtask handleModal={handleModalClose} />}
 
       {isFetching ? (
@@ -89,33 +102,48 @@ const Subtasks = () => {
         <Loader style={{ width: "150px", background: "transparent" }} />
       ) : data ? (
         <div className={styles.subtasks}>
-          <div className={styles.subtasksInner}>
+          <motion.div
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className={styles.subtasksInner}
+          >
             <div className={styles.title}>
               {data?.length > 0 && <span>Subtasks</span>}
             </div>
             {data.map((subtask) => (
-              <div className={styles.subtask}>
-                <div className={styles.info}>
-                  <span>{subtask.name}</span>
-                  <span>{subtask.description}</span>
-                </div>
-                <div className={styles.check}>
-                  {subtask.done ? (
-                    <div onClick={() => handleCheckToggle(subtask)}>
-                      <LuCheckCircle2 color="#34c59f" />
-                    </div>
-                  ) : (
-                    <div onClick={() => handleCheckToggle(subtask)}>
-                      <LuCircle />
-                    </div>
-                  )}
-                  <div className={styles.chevron}>
-                    <LuChevronDown />
+              <motion.div
+                initial={{ y: -10 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
+                  // whileTap={{ scale: 0.9 }}
+                  className={styles.subtask}
+                >
+                  <div className={styles.info}>
+                    <span>{subtask.name}</span>
+                    <span>{subtask.description}</span>
                   </div>
-                </div>
-              </div>
+                  <div className={styles.check}>
+                    {subtask.done ? (
+                      <div onClick={() => handleCheckToggle(subtask)}>
+                        <LuCheckCircle2 color="#34c59f" />
+                      </div>
+                    ) : (
+                      <div onClick={() => handleCheckToggle(subtask)}>
+                        <LuCircle />
+                      </div>
+                    )}
+                    <div className={styles.chevron}>
+                      <LuChevronDown />
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
           <div className={styles.comments}>
             <div className={styles.commentsTitle}>
               <span>Comments</span>
