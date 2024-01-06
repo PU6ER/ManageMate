@@ -1,12 +1,13 @@
 import { INote, IProject, IQuestion } from "./../../types/project.types";
 import { ITask } from "./../../types/task.types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { IUser } from "../../types/user.types";
 
 const API_URL = "http://localhost:5555/api";
 
 export const api = createApi({
   // reducerPath: "api",
-  tagTypes: ["Task", "Project", "Note", "Question", "Subtask"],
+  tagTypes: ["Task", "Project", "Note", "Question", "Subtask", "User"],
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
   }),
@@ -44,6 +45,19 @@ export const api = createApi({
         },
       ],
     }),
+    getUser: builder.query<IUser, [string, string]>({
+      query: ([email, password]) => ({
+        body: { email: email, password: password },
+        url: `/users/`,
+        method: "SEARCH",
+      }),
+
+      providesTags: () => [
+        {
+          type: "User",
+        },
+      ],
+    }),
   }),
 });
 
@@ -52,4 +66,5 @@ export const {
   useGetProjectsQuery,
   useGetNotesQuery,
   useGetQuestionsQuery,
+  useGetUserQuery,
 } = api;
