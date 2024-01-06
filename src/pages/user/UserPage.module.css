@@ -1,0 +1,179 @@
+.container{
+    display: flex;
+    flex-direction: column;
+   justify-items: center;
+    width: 1000px;
+    height: 670px;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+.title{
+    display: flex;
+    width: 200px;
+    justify-self: center;
+}
+.form{
+    margin-top: 50px;
+    /* border: 1px solid #c5c4c460; */
+    background-color: #fff;
+    border-radius: 10px;
+    width: 300px;
+    padding: 20px 25px;
+}
+.formContainer{
+    display: flex;
+    width: 1000px;
+    height: 400px;
+    justify-content: center;
+    align-items: center ;
+}
+.imageContainer{
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items : center;
+}
+.outerContainer{
+    display: flex;
+    width: 1440px;
+    justify-content: center;
+}
+.btn{
+    display: flex;
+    width: 100%;
+    justify-content:center;
+    margin-top: 40px;
+    height: 35px;
+}
+.btn button{
+    width: 100px;
+    background-color: #000;
+    color: white;
+    font-weight: 700;
+}
+.saveImage{
+    display: flex;
+    width: 100%;
+    justify-content:center;
+}
+.saveImage button{
+    width: 100px;
+    background-color: #fff;
+    color: #34c59f;
+    font-weight: 700;
+}
+
+.formInput{
+    margin-top: 5px;
+    height: 35px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+   align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    transition: border-color 0.4s ease-in-out;
+    border: 1px solid #c5c4c460;
+}
+.formInput input{
+  
+    
+    margin-bottom: 0px;
+    height: 35px;
+    padding: 0;
+    width: 250px;
+    padding-left: 5px;
+    border: none
+}
+.fileUpload{
+    width: 260px;
+    display: flex;
+    justify-content: center ;
+    /* background-color: #f6a7a7; */
+
+    
+
+}
+input[type='file']::file-selector-button 
+{ 
+    width: 70px;
+    height: 30px;
+    background-color: #ffff;
+    color: transparent;
+    font-weight: 500;
+    margin-right: 15px;
+
+    font-family: 'Satoshi', sans-serif;
+   border: none;
+   outline: none;
+ 
+    /* padding: 4px 5px; */
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type='file']:hover::after{
+    color:#ffbd38;
+    transition: color ease-in-out .2s;
+
+}
+input[type="file"]::after {
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+    top: 10px;
+    left: 4px;
+    color: #365eff;
+    font-weight: 600;
+    content: "Upload File";
+  }
+ /* input[type="file"]:focus-within::file-selector-button,
+input[type="file"]:focus::file-selector-button {
+  outline: 2px solid #0964b0;
+  outline-offset: 2px;
+} */
+input[type='file']{
+    z-index: 1;
+    position: relative;
+   width:200px;
+   /* background-color: #34c59f; */
+ 
+}
+
+
+
+.fileLabel {
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    color:#365eff;
+}
+.icon{
+    margin-left: 5px;
+}
+.formInput input:focus{
+    border: none
+}
+.formInput:hover {
+    border-color: #365eff;
+  }
+  input[type="password"]:not(:placeholder-shown) {
+    font: small-caption;
+    font-size: 14px;
+    
+  }
+.error{
+   color: red;
+   margin-bottom: 10px;
+} 
+
+.profilePhoto{
+    width:200px;
+    border-radius: 20px;
+    height: 200px;
+    background-color: #f7f7f7;
+    margin-right: 10px;
+}
